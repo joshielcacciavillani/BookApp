@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AccentureAcademy.BookApp.Models.Author>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Listar</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <header class="jumbotron text-center">
+        <h1>Listado de Autores</h1>
+    </header>
+    <main class="container">
+        <div class="text-right">
+            @Html.ActionLink(" ", "Agregar", null,
+            new
+            {
+                @class = "glyphicon glyphicon-plus",
+                style = "font-size:1.5em"
+
+            })
+            &nbsp
+        </div>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre Autor</th>
+                    <th>Pais</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in this.Model)
+                {
+                    <tr>
+                        <td>@p.AuthorName</td>
+                        <td>@p.Country</td>
+                        <td class="text-right">
+                            @Html.ActionLink(" ", "Editar", new { Id = p.Id },
+                            new
+                            {
+                                @class = "glyphicon glyphicon-pencil",
+                                style = "font-size:1.5em"
+
+                            })
+                            &nbsp &nbsp &nbsp
+
+                            @Html.ActionLink(" ", "Eliminar", new { Id = p.Id },
+                            new
+                            {
+                                @class = "glyphicon glyphicon-trash",
+                                style = "font-size:1.5em"
+
+                            })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </main>
+<div>
+
+</div>
+
+</body>
+</html>
+

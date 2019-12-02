@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Accenture Library";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono|Source+Sans+Pro&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <title>@ViewBag.Title - Biblioteca</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <nav class="nav navbar-fixed-top" sytle="">
+        <nav class="container">
+            <nav class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Biblioteca", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </nav>
+            <nav class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Libros", "Listar", "Book")</li>
+                    <li>@Html.ActionLink("Autores", "Listar", "Author")</li>
+                    <li>@Html.ActionLink("Generos", "Listar", "Genre")</li>
+                    <li>@Html.ActionLink("Editoriales", "Listar", "Publisher")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                </ul>
+            </nav>
+        </nav>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Biblioteca .NET</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

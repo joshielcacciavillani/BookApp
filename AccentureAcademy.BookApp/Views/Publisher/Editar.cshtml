@@ -1,0 +1,43 @@
+﻿@using AccentureAcademy.BookApp.Models
+@model Publisher
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Editar</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</head>
+<body>
+    <header class="jumbotron text-center">
+        <h1>@this.ViewBag.PublisherName</h1>
+    </header>
+
+    <main class="container">
+        <form method="post">
+            <label>Editorial</label>
+            @Html.EditorFor(m => m.PublisherName,
+                   new
+                   {
+                       HtmlAttributes = new
+                       {
+                           @class = "form-control",
+                           placeholder = "Ingrese Editorial"
+                       }
+                   })
+            <button class="btn btn-primary form-control" style="margin-top:1em">Aceptar</button>
+            <button class="btn btn-secondary" style="margin-top:1em">
+                @Html.ActionLink("Cerrar", "Listar")
+            </button>
+        </form>
+    </main>
+</body>
+</html>
