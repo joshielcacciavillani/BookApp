@@ -1,5 +1,3 @@
-﻿DROP DATABASE AccentureAcademyBookDb;
-
 CREATE DATABASE AccentureAcademyBookDb;
 GO 
 
