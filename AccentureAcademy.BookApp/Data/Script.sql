@@ -1,4 +1,3 @@
-﻿CREATE DATABASE AccentureAcademyBookDb;
 
 CREATE DATABASE AccentureAcademyBookDb;
 
