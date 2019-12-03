@@ -1,4 +1,11 @@
 ﻿CREATE DATABASE AccentureAcademyBookDb;
+
+CREATE DATABASE AccentureAcademyBookDb;
+
+CREATE DATABASE AccentureAcademyBookDb;
+GO 
+
+USE AccentureAcademyBookDb;
 GO
 
 USE  AccentureAcademyBookDb;
@@ -32,7 +39,6 @@ CREATE TABLE Book
 	AuthorID int not null,
 	GenreID int not null,
 	PublisherID int not null,
-
 	CONSTRAINT FK_AUTHOR 
 			FOREIGN KEY (AuthorID)
 			REFERENCES Author(Id)
