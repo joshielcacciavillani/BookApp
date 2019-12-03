@@ -6,16 +6,20 @@
 
 <html>
 <head>
+     
     <meta name="viewport" content="width=device-width" />
     <title>Listar</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
-    <header class="text-center">
+    <header class="jumbotron text-center">
         <h1>Listado de Libros</h1>
     </header>
+
     <main class="container">
         <div class="text-right">
             @Html.ActionLink(" ", "Agregar", null,
@@ -25,7 +29,6 @@
                  style = "font-size:1.5em"
 
             })
-            &nbsp
         </div>
         <table class="table table-hover table-striped">
             <thead>
@@ -33,7 +36,9 @@
                     <th>Titulo</th>
                     <th>Fecha Edicion</th>
                     <th>ISBN</th>
-                    <th>Autor</th>
+                    <th>Author</th>
+                    <th>Genre</th>
+                    <th>Publisher</th>
                     <th></th>
                 </tr>
             </thead>
@@ -43,7 +48,10 @@
                     <tr>
                         <td>@p.Title</td>
                         <td>@p.Edition.ToShortDateString()</td>
-                        <td>@p.ISBN min</td>
+                        <td>@p.ISBN</td>
+                        <td>@p.Author.AuthorName</td>
+                        <td>@p.Genre.GenreName</td>
+                        <td>@p.Publisher.PublisherName</td>
                         <td class="text-right">
                             @Html.ActionLink(" ", "Editar", new { Id=p.Id },
                             new
@@ -52,8 +60,6 @@
                                 style = "font-size:1.5em"
 
                             })
-                            &nbsp &nbsp &nbsp
-
                             @Html.ActionLink(" ", "Eliminar", new { Id = p.Id },
                             new
                             {
@@ -67,8 +73,9 @@
             </tbody>
         </table>
     </main>
-    <div>
-
-    </div>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+    </button>
+    @Html.ActionLink("Volver a Inicio", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 </body>
 </html>

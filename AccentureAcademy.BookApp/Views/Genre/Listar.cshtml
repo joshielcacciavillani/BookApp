@@ -11,7 +11,7 @@
     <script src="~/Scripts/bootstrap.js"></script>
 </head>
 <body>
-    <header class="text-center">
+    <header class="jumbotron text-center">
         <h1>Listado de Generos</h1>
     </header>
     <main class="container">
@@ -60,8 +60,9 @@
             </tbody>
         </table>
     </main>
-    <div>
-
-    </div>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+    </button>
+    @Html.ActionLink("Volver a Inicio", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 </body>
 </html>

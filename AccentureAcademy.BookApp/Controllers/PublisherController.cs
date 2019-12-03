@@ -27,10 +27,7 @@ namespace AccentureAcademy.BookApp.Controllers
         {
             this.db = new AccentureAcademyBookDbEntities();
         }
-        public ActionResult ListarAsync()
-        {
-            return View();
-        }
+
         public ActionResult Listar()
         {
             List<Publisher> publishers = this.db.Publisher.ToList();
@@ -47,10 +44,17 @@ namespace AccentureAcademy.BookApp.Controllers
         [HttpPost]
         public ActionResult Editar(Publisher publisher)
         {
-            this.db.Publisher.Attach(publisher);
-            this.db.Entry(publisher).State = System.Data.Entity.EntityState.Modified;
-            this.db.SaveChanges();
-            return RedirectToAction("Listar");
+            if (ModelState.IsValid)
+            {
+                this.db.Publisher.Attach(publisher);
+                this.db.Entry(publisher).State = System.Data.Entity.EntityState.Modified;
+                this.db.SaveChanges();
+                return RedirectToAction("Listar");
+            }
+            else
+            {
+                return Content("No puede dejar el campo vacio");
+            }
         }
 
         public ActionResult Agregar()
@@ -63,9 +67,16 @@ namespace AccentureAcademy.BookApp.Controllers
         [HttpPost]
         public ActionResult Agregar(Publisher publisher)
         {
-            this.db.Publisher.Add(publisher);
-            this.db.SaveChanges();
-            return RedirectToAction("Listar");
+            if (ModelState.IsValid)
+            {
+                this.db.Publisher.Add(publisher);
+                this.db.SaveChanges();
+                return RedirectToAction("Listar");
+            }
+            else
+            {
+                return Content("No puede dejar el campo vacio");
+            }
         }
 
         public ActionResult Eliminar(int id)

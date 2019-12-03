@@ -21,7 +21,6 @@ namespace AccentureAcademy.BookApp.Controllers
             {
                 Id = p.Id,
                 AuthorName = p.AuthorName,
-                Country = p.Country
             });
             return Json(Author, JsonRequestBehavior.AllowGet);
         }
@@ -30,10 +29,7 @@ namespace AccentureAcademy.BookApp.Controllers
         {
             this.db = new AccentureAcademyBookDbEntities();
         }
-        public ActionResult ListarAsync()
-        {
-            return View();
-        }
+
         public ActionResult Listar()
         {
             List<Author> authors = this.db.Author.ToList();
@@ -50,10 +46,17 @@ namespace AccentureAcademy.BookApp.Controllers
         [HttpPost]
         public ActionResult Editar(Author author)
         {
-            this.db.Author.Attach(author);
-            this.db.Entry(author).State = System.Data.Entity.EntityState.Modified;
-            this.db.SaveChanges();
-            return RedirectToAction("Listar");
+            if(ModelState.IsValid)
+            { 
+                this.db.Author.Attach(author);
+                this.db.Entry(author).State = System.Data.Entity.EntityState.Modified;
+                this.db.SaveChanges();
+                return RedirectToAction("Listar");
+            }
+            else
+            {
+                return Content("No puede dejar el campo vacio");
+            }
         }
 
         public ActionResult Agregar()
@@ -66,10 +69,18 @@ namespace AccentureAcademy.BookApp.Controllers
         [HttpPost]
         public ActionResult Agregar(Author author)
         {
-            this.db.Author.Add(author);
-            this.db.SaveChanges();
-            return RedirectToAction("Listar");
+            if (ModelState.IsValid)
+            {
+                this.db.Author.Add(author);
+                this.db.SaveChanges();
+                return RedirectToAction("Listar");
+            }
+            else
+            {
+                return Content("No puede dejar el campo vacio");
+            }
         }
+
 
         public ActionResult Eliminar(int id)
         {

@@ -10,28 +10,26 @@ namespace AccentureAcademy.BookApp.Controllers
 {
     public class GenreController : Controller
     {
+        // GET: Book
         public ActionResult Index()
         {
             return View();
         }
         public ActionResult JsonListar()
         {
-            IEnumerable<Object> Author = this.db.Author.ToList().Select(p => new
+            IEnumerable<Object> Genre = this.db.Genre.ToList().Select(p => new
             {
                 Id = p.Id,
-                Title = p.AuthorName,
+                GenreName = p.GenreName,
             });
-            return Json(Author, JsonRequestBehavior.AllowGet);
+            return Json(Genre, JsonRequestBehavior.AllowGet);
         }
         private AccentureAcademyBookDbEntities db;
         public GenreController()
         {
             this.db = new AccentureAcademyBookDbEntities();
         }
-        public ActionResult ListarAsync()
-        {
-            return View();
-        }
+
         public ActionResult Listar()
         {
             List<Genre> genres = this.db.Genre.ToList();
@@ -40,7 +38,7 @@ namespace AccentureAcademy.BookApp.Controllers
 
         public ActionResult Editar(int id)
         {
-            this.ViewBag.Titulo = "Editar Generos";
+            this.ViewBag.Titulo = "Editar Autor";
             Genre m = this.db.Genre.Find(id);
             return View(m);
         }
@@ -48,15 +46,22 @@ namespace AccentureAcademy.BookApp.Controllers
         [HttpPost]
         public ActionResult Editar(Genre genre)
         {
-            this.db.Genre.Attach(genre);
-            this.db.Entry(genre).State = System.Data.Entity.EntityState.Modified;
-            this.db.SaveChanges();
-            return RedirectToAction("Listar");
+            if (ModelState.IsValid)
+            {
+                this.db.Genre.Attach(genre);
+                this.db.Entry(genre).State = System.Data.Entity.EntityState.Modified;
+                this.db.SaveChanges();
+                return RedirectToAction("Listar");
+            }
+            else
+            {
+                return Content("No puede dejar el campo vacio");
+            }
         }
 
         public ActionResult Agregar()
         {
-            this.ViewBag.Titulo = "Agregar Genero";
+            this.ViewBag.Titulo = "Agregar Autor";
             Genre m = new Genre();
             return View("Editar", m);
         }
@@ -64,10 +69,18 @@ namespace AccentureAcademy.BookApp.Controllers
         [HttpPost]
         public ActionResult Agregar(Genre genre)
         {
-            this.db.Genre.Add(genre);
-            this.db.SaveChanges();
-            return RedirectToAction("Listar");
+            if (ModelState.IsValid)
+            {
+                this.db.Genre.Add(genre);
+                this.db.SaveChanges();
+                return RedirectToAction("Listar");
+            }
+            else
+            {
+                return Content("No puede dejar el campo vacio");
+            }
         }
+
 
         public ActionResult Eliminar(int id)
         {

@@ -29,7 +29,6 @@
             <thead>
                 <tr>
                     <th>Nombre Autor</th>
-                    <th>Pais</th>
                     <th></th>
                 </tr>
             </thead>
@@ -38,7 +37,6 @@
                 {
                     <tr>
                         <td>@p.AuthorName</td>
-                        <td>@p.Country</td>
                         <td class="text-right">
                             @Html.ActionLink(" ", "Editar", new { Id = p.Id },
                             new
@@ -61,6 +59,10 @@
                 }
             </tbody>
         </table>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+        </button>
+        @Html.ActionLink("Volver a Inicio", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
     </main>
 <div>
 

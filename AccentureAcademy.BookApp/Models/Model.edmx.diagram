@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="947928b4efbd4bf4a25d6963532cb6f9" Name="Diagram1">
-        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.Author" Width="1.5" PointX="0.75" PointY="1" />
-        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.Book" Width="1.5" PointX="0.75" PointY="3.875" />
-        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.Genre" Width="1.5" PointX="2.75" PointY="3.75" />
-        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.Publisher" Width="1.5" PointX="4.75" PointY="3.75" />
-        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.WrittenBy" Width="1.5" PointX="3" PointY="0.875" />
-        <AssociationConnector Association="AccentureAcademyBookDbModel.FK_Author" />
-        <AssociationConnector Association="AccentureAcademyBookDbModel.FK_Book" />
+      <Diagram DiagramId="6bc90881cd9f41a3beb5220b3adb102a" Name="Diagram1">
+        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.Author" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.Book" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.Genre" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccentureAcademyBookDbModel.Publisher" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <AssociationConnector Association="AccentureAcademyBookDbModel.FK_AUTHOR" ManuallyRouted="false" />
+        <AssociationConnector Association="AccentureAcademyBookDbModel.FK_GENRE" ManuallyRouted="false" />
+        <AssociationConnector Association="AccentureAcademyBookDbModel.FK_PUBLISHED_BY" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

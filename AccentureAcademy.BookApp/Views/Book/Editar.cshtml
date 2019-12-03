@@ -4,6 +4,11 @@
 
 @{
     Layout = null;
+    var db = new AccentureAcademyBookDbEntities();
+    var authors = db.Author.Select(author => new { Id = author.Id, Name = author.AuthorName }).ToList();
+    var genres = db.Genre.Select(genre => new { Id = genre.Id, Name = genre.GenreName }).ToList();
+    var publishers = db.Publisher.Select(publisher => new { Id = publisher.Id, Name = publisher.PublisherName }).ToList();
+
 }
 
 <!DOCTYPE html>
@@ -12,13 +17,15 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Editar</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.3.1.js"></script>
     <script src="~/Scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 </head>
 <body>
     <header class="jumbotron text-center">
-        <h1>@this.ViewBag.Titulo</h1>
+        <h1>Editar Libro</h1>
     </header>
 
     <main class="container">
@@ -33,7 +40,6 @@
                            placeholder ="Ingrese titulo"
                        }
                    })
-
             <label>Fecha Edicion</label>
             @Html.EditorFor(m => m.Edition,
                    new
@@ -43,7 +49,6 @@
                            @class = "form-control",
                 }
             })
-
             <label>ISBN</label>
             @Html.EditorFor(m => m.ISBN,
                    new
@@ -51,8 +56,33 @@
                        HtmlAttributes = new
                        {
                            @class = "form-control",
+                           placeholder = "Ingrese ISBN"
                        }
                    })
+            <label>Autor</label>
+            <select class="form-control" name="AuthorID">
+                <option>Seleccione un autor...</option>
+                @foreach (Author author in db.Author.ToList())
+                {
+                    <option value="@author.Id">@author.AuthorName</option>
+                }
+            </select>
+            <label>Genre</label>
+            <select class="form-control" name="GenreID">
+                <option>Seleccione un Genero...</option>
+                @foreach (Genre genre in db.Genre.ToList())
+                {
+                    <option value="@genre.Id">@genre.GenreName</option>
+                }
+            </select>
+            <label>Publisher</label>
+            <select class="form-control" name="PublisherID">
+                <option>Seleccione una Editorial...</option>
+                @foreach (Publisher publisher in db.Publisher.ToList())
+                {
+                    <option value="@publisher.Id">@publisher.PublisherName</option>
+                }
+            </select>
             <button class="btn btn-primary form-control" style="margin-top:1em">Aceptar</button>
             <button class="btn btn-secondary" style="margin-top:1em">
                 @Html.ActionLink("Cerrar", "Listar")

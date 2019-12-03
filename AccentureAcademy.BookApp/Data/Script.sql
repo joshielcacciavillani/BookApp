@@ -1,80 +1,60 @@
-﻿DROP DATABASE AccentureAcademyBookDb;
-
-CREATE DATABASE AccentureAcademyBookDb;
-GO 
-
-USE AccentureAcademyBookDb;
+﻿CREATE DATABASE AccentureAcademyBookDb;
 GO
 
-CREATE TABLE Book
-(
-	Id int primary key identity(1,1),
-	Title varchar(200) unique not null,
-	ISBN varchar(22) unique not null,
-	Edition DateTime not null,
+USE  AccentureAcademyBookDb;
+GO
 
-);
-
-CREATE TABLE Author
-(
-	Id int primary key identity(1,1),
-	AuthorName varchar(50) not null,
-	Country varchar(50) not null,
-);
 
 CREATE TABLE Genre
 (
 	Id int primary key identity(1,1),
-	GenreName varchar(20) not null,
-    CONSTRAINT UQ_Ritle UNIQUE (GenreName)
+	GenreName varchar(50) unique not null
 );
 
 CREATE TABLE Publisher
 (
 	Id int primary key identity(1,1),
-	PublisherName varchar(50) not null,
-    CONSTRAINT UQ_Publisher UNIQUE (PublisherName)
+	PublisherName varchar(50) unique not null
 );
 
-
-CREATE TABLE WrittenBy
-(	
+CREATE TABLE Author
+(
 	Id int primary key identity(1,1),
-	BookId int not null,
-	AuthorID int not null,
-	CONSTRAINT UQ_Author_Book UNIQUE (BookID, AuthorID), 
-	CONSTRAINT FK_Author	FOREIGN KEY (AuthorID)
-						 REFERENCES Author(ID),
-	CONSTRAINT FK_Book FOREIGN KEY (BookID)
-						REFERENCES Book(ID),
-)
-(	
-	AuthorID int,
-	BookId int,
-	CONSTRAINT FK_AUTOR FOREIGN KEY (Author_Id) 
-		REFERENCES Author(Id)
-		ON DELETE CASCADE,
-	CONSTRAINT FK_BOOK FOREIGN KEY (Book_Id) 
-		REFERENCES Book(Id)
-		ON DELETE CASCADE,
-	CONSTRAINT PK_WRITTEN_BY PRIMARY KEY(Author_Id, Book_Id)
+	AuthorName varchar(50) unique not null
 );
 
-GO
+CREATE TABLE Book
+(
+	Id int primary key identity(1,1),
+	Title varchar(50) unique not null,
+	ISBN varchar(22) unique not null,
+	Edition DateTime not null,
+	AuthorID int not null,
+	GenreID int not null,
+	PublisherID int not null,
 
-INSERT INTO Book
-(Title, ISBN, Edition)
-Values
-('El nombre del viento','123458','2019-10-31')
+	CONSTRAINT FK_AUTHOR 
+			FOREIGN KEY (AuthorID)
+			REFERENCES Author(Id)
+			ON DELETE CASCADE,
+	CONSTRAINT FK_GENRE 
+			FOREIGN KEY (GenreID)
+			REFERENCES Genre(Id)
+			ON DELETE CASCADE,
+   CONSTRAINT FK_PUBLISHED_BY 
+		FOREIGN KEY (PublisherID)
+		REFERENCES Publisher(Id)
+		ON DELETE CASCADE
+);
 
 INSERT INTO Author
-(AuthorName, Country)
+(AuthorName)
 Values
-('Gabriel García Márquez','CL'),
-('Miguel de Cervantes','ES'),
-('William Shakespeare','GB'),
-('Antoine de Saint Exupéry','FR'),
-('Patric Rothfuss','US')
+('Gabriel García Márquez'),
+('Miguel de Cervantes'),
+('William Shakespeare'),
+('Antoine de Saint Exupéry'),
+('Patric Rothfuss')
 
 INSERT INTO Genre
 (GenreName)

@@ -35,10 +35,17 @@ namespace AccentureAcademy.BookApp.Controllers
         [HttpPost]
         public ActionResult Editar(Book book)
         {
-            this.db.Book.Attach(book);
-            this.db.Entry(book).State = System.Data.Entity.EntityState.Modified;
-            this.db.SaveChanges();
-            return RedirectToAction("Listar");
+            if (ModelState.IsValid)
+            {
+                this.db.Book.Attach(book);
+                this.db.Entry(book).State = System.Data.Entity.EntityState.Modified;
+                this.db.SaveChanges();
+                return RedirectToAction("Listar");
+            }
+            else
+            {
+                return Content("No puede dejar el campo vacio");
+            }
         }
 
         public ActionResult Agregar()
@@ -51,9 +58,16 @@ namespace AccentureAcademy.BookApp.Controllers
         [HttpPost]
         public ActionResult Agregar(Book book)
         {
-            this.db.Book.Add(book);
-            this.db.SaveChanges();
-            return RedirectToAction("Listar");
+            if (ModelState.IsValid)
+            {
+                this.db.Book.Add(book);
+                this.db.SaveChanges();
+                return RedirectToAction("Listar");
+            }
+            else
+            {
+                return Content("No puede dejar el campo vacio");
+            }            
         }
 
         public ActionResult Eliminar(int id)

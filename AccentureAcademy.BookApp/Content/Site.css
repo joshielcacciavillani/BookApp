@@ -1,6 +1,12 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.body {
+    background: url('../img/bg-masthead.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -39,4 +45,9 @@ p, div {
     background-size: cover;
     background-position: center;
 }
-
+.navbar-header {
+}
+.navbar-fixex-top {
+    background: grey;
+}
+.background-image
